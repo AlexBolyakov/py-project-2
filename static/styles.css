@@ -1,0 +1,17 @@
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: navy;
+    text-align: center;
+}
+
+.cupcake-image {
+    border: 2px solid black;
+    border-radius: 2px;
+    width: 200px;
+    height: 200px;
+    margin-left: 45%;
+    
+}

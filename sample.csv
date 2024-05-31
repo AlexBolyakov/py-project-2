@@ -1,0 +1,6 @@
+size,name,price,flavor,frosting,sprinkles,filling
+regular,Stars and Stripes,2.99,Vanilla,Chocolate,"['Red', 'White', 'Blue']",Vanilla
+mini,Oreo,0.99,Chocolate,Cookies and Cream,['Oreo pieces'],
+large,Red Velvet,3.99,Red Velvet,,[],Cream Cheese
+regular,Chocolate Heaven,2.49,Chocolate,Vanilla,['Chocolate Chips'],Chocolate Ganache
+regular,Chocolate Heaven,4.49,Chocolate,Rasberry,['Chocolate Chips'],Browny
