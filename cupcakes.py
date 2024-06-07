@@ -121,17 +121,17 @@ class Large(Cupcake):
     def calculate_price(self, quantity):
         return quantity * self.price
 
-cupcake1 = Regular("Stars and Stripes", 2.99, "Vanilla", "Vanilla", "Chocolate")
-cupcake1.add_sprinkles("Red","White","Blue")
-cupcake2 = Mini("Oreo", .99, "Chocolate", "Cookies and Cream")
-cupcake2.add_sprinkles("Oreo pieces")
-cupcake3 = Large("Red Velvet", 3.99, "Red Velvet", "Cream Cheese", None)
+# cupcake1 = Regular("Stars and Stripes", 2.99, "Vanilla", "Vanilla", "Chocolate")
+# cupcake1.add_sprinkles("Red","White","Blue")
+# cupcake2 = Mini("Oreo", .99, "Chocolate", "Cookies and Cream")
+# cupcake2.add_sprinkles("Oreo pieces")
+# cupcake3 = Large("Red Velvet", 3.99, "Red Velvet", "Cream Cheese", None)
 
-cupcake_list = [
-    cupcake1,
-    cupcake2,
-    cupcake3
-]
+# cupcake_list = [
+#     cupcake1,
+#     cupcake2,
+#     cupcake3
+# ]
 
 def write_new_csv(file,cupcakes):
     with open(file, "w", newline="\n") as csvfile:
@@ -158,7 +158,7 @@ def write_new_csv(file,cupcakes):
                                  "sprinkles": cupcake.sprinkles})
 
 
-write_new_csv("sample.csv", cupcake_list)
+# write_new_csv("sample.csv", cupcake_list)
 
 
 def get_cupcakes(file):
@@ -169,7 +169,7 @@ def get_cupcakes(file):
         return reader
 
 result = get_cupcakes("sample.csv")
-print (result)
+
 
 def find_cupcake(file, name):
     for cupcake in get_cupcakes(file):
@@ -179,36 +179,46 @@ def find_cupcake(file, name):
     return None
 
 
+def view_order(file):
+    
+    with open(file) as csvfile:
+        reader = csv.DictReader(csvfile)
+        reader = list(reader)
+        return reader
+
 
 
 def add_cupcake_dictionary(file, cupcake):
     with open(file, "a", newline="\n") as csvfile:
         fieldnames = ["size", "name", "price", "flavor", "frosting", "sprinkles", "filling"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        if hasattr(cupcake, "filling"):
-                writer.writerow({"size": cupcake.size, 
-                                 "name": cupcake.name, 
-                                 "price": cupcake.price,
-                                 "flavor": cupcake.flavor, 
-                                 "frosting": cupcake.frosting, 
-                                 "filling": cupcake.filling, 
-                                 "sprinkles": cupcake.sprinkles})
-        else:
-                writer.writerow({"size": cupcake.size, 
-                                 "name": cupcake.name, 
-                                 "price": cupcake.price, 
-                                 "flavor": cupcake.flavor, 
-                                 "frosting": cupcake.frosting, 
-                                 "sprinkles": cupcake.sprinkles})
+        print(type(cupcake))
+        writer.writerow(cupcake)
+        
+        # if hasattr(cupcake, "filling"):
+        #         writer.writerow({"size": cupcake["size"], 
+        #                          "name": cupcake.name, 
+        #                          "price": cupcake.price,
+        #                          "flavor": cupcake.flavor, 
+        #                          "frosting": cupcake.frosting, 
+        #                          "filling": cupcake.filling, 
+        #                          "sprinkles": cupcake.sprinkles})
+        # else:
+        #         writer.writerow({"size": cupcake.size, 
+        #                          "name": cupcake.name, 
+        #                          "price": cupcake.price, 
+        #                          "flavor": cupcake.flavor, 
+        #                          "frosting": cupcake.frosting, 
+        #                          "sprinkles": cupcake.sprinkles})
 
 
-new_cupcake = Regular("Chocolate Heaven", 2.49, "Chocolate", "Chocolate Ganache", "Vanilla")
-new_cupcake.add_sprinkles("Chocolate Chips")
-add_cupcake_dictionary("sample.csv", new_cupcake)
+# new_cupcake = Regular("Chocolate Heaven", 2.49, "Chocolate", "Chocolate Ganache", "Vanilla")
+# new_cupcake.add_sprinkles("Chocolate Chips")
+# add_cupcake_dictionary("sample.csv", new_cupcake)
 
-new_cupcake1 = Regular("Chocolate Heaven", 4.49, "Chocolate", "Browny", "Rasberry")
-new_cupcake1.add_sprinkles("Chocolate Chips")
-add_cupcake_dictionary("sample.csv", new_cupcake1)
+# new_cupcake1 = Regular("Chocolate Heaven", 4.49, "Chocolate", "Browny", "Rasberry")
+# new_cupcake1.add_sprinkles("Chocolate Chips")
+# add_cupcake_dictionary("sample.csv", new_cupcake1)
 
 
 

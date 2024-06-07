@@ -1,4 +1,21 @@
-    <!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for cupcake in cupcakes %}
+            <h3>{{cupcake["name"]}}</h3>
+            <h4>Flavor: {{cupcake["frosting"]}}</h4>
+            <h4><b>Price: ${{cupcake["price"]}}</b></h4>
+        {% endfor %}    
+
+{% endblock %}
+    
+    
+    
+    
+    
+    <!-- <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -15,4 +32,4 @@
             <h4><b>Price: ${{cupcake["price"]}}</b></h4>
         {% endfor %}    
     </body>
-    </html>
+    </html> -->

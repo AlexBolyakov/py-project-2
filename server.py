@@ -1,13 +1,13 @@
 from flask import Flask, render_template, url_for, redirect
-from cupcakes import get_cupcakes, find_cupcake, add_cupcake_dictionary
+from cupcakes import get_cupcakes, find_cupcake, add_cupcake_dictionary, view_order
 app = Flask(__name__)
 
-cupcake = find_cupcake("cupcakes.csv", "Oreo")
+# cupcake = find_cupcake("cupcakes.csv", "Oreo")
 
 # Decorator
 @app.route("/")
 def home():
-    return render_template("index.html", cupcakes = get_cupcakes("sample.csv"))
+    return render_template("home.html", cupcakes = get_cupcakes("sample.csv"))
 
 @app.route("/individual-cupcake/<name>")
 def view_cupcake(name):
@@ -20,15 +20,26 @@ def view_cupcake(name):
     else:
         return "Cupcake is not in the list!"
 
-
-@app.route("/all_cupcakes")
-def all_cupcake():
-    return render_template("all-cupcakes.html")
-
-
-@app.route("/active_order")
+@app.route("/view-order")
 def order_cupcake():
-    return render_template("active-order.html")
+   
+    return render_template("view-order.html", cupcakes = view_order("order.csv"))
+
+@app.route("/add-cupcake/<name>")
+def add_cupcake(name):
+    cupcake = find_cupcake("cupcakes.csv", name)
+    print(type(cupcake))
+    if cupcake:
+        
+        add_cupcake_dictionary("order.csv", cupcake)
+        return redirect(url_for("home"))
+    else:
+        return "Sorry cupcake not found."
+
+# @app.route("/active_order")
+# def order_cupcake():
+#     return render_template("active-order.html")
+
 
 if __name__ == "__main__":
     app.debug = "development"
